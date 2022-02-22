@@ -1,0 +1,10 @@
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\bin\Debug\DoctorMeeting.exe.config
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\bin\Debug\DoctorMeeting.exe
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\bin\Debug\DoctorMeeting.pdb
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\obj\Debug\DoctorMeeting.csproj.AssemblyReference.cache
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\obj\Debug\DoctorMeeting.Form1.resources
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\obj\Debug\DoctorMeeting.Properties.Resources.resources
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\obj\Debug\DoctorMeeting.csproj.GenerateResource.cache
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\obj\Debug\DoctorMeeting.csproj.CoreCompileInputs.cache
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\obj\Debug\DoctorMeeting.exe
+C:\Users\Marco Peñafort\source\repos\DoctorMeeting\obj\Debug\DoctorMeeting.pdb
