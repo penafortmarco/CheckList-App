@@ -43,11 +43,13 @@ namespace CheckList
             this.closeButton2 = new System.Windows.Forms.PictureBox();
             this.minimizeButton2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.lbErrorPrice = new System.Windows.Forms.Label();
             this.lbErrorStock = new System.Windows.Forms.Label();
@@ -66,22 +68,20 @@ namespace CheckList
             this.tbId = new System.Windows.Forms.TextBox();
             this.lbId = new System.Windows.Forms.Label();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.btnHelp = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productCtrlBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productCtrlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productCtrlBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,6 +168,21 @@ namespace CheckList
             this.panel1.Size = new System.Drawing.Size(214, 645);
             this.panel1.TabIndex = 9;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(38)))), ((int)(((byte)(70)))));
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.ForeColor = System.Drawing.Color.Silver;
+            this.btnHelp.Location = new System.Drawing.Point(3, 80);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(208, 30);
+            this.btnHelp.TabIndex = 11;
+            this.btnHelp.Text = "Ayuda";
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnAdd);
@@ -201,9 +216,9 @@ namespace CheckList
             this.btnModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModify.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModify.ForeColor = System.Drawing.Color.Silver;
-            this.btnModify.Location = new System.Drawing.Point(-3, 102);
+            this.btnModify.Location = new System.Drawing.Point(0, 102);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(213, 46);
+            this.btnModify.Size = new System.Drawing.Size(210, 46);
             this.btnModify.TabIndex = 9;
             this.btnModify.Text = "  Modificar";
             this.btnModify.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -249,7 +264,7 @@ namespace CheckList
             this.dataGridView.ColumnHeadersHeight = 40;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
+            this.Id,
             this.nameDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn,
@@ -284,6 +299,10 @@ namespace CheckList
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(652, 587);
             this.dataGridView.TabIndex = 10;
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(CheckList.Product);
             // 
             // groupBox
             // 
@@ -375,11 +394,11 @@ namespace CheckList
             // lbUserMessage
             // 
             this.lbUserMessage.AutoSize = true;
-            this.lbUserMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUserMessage.ForeColor = System.Drawing.Color.Silver;
-            this.lbUserMessage.Location = new System.Drawing.Point(19, 433);
+            this.lbUserMessage.Location = new System.Drawing.Point(66, 429);
             this.lbUserMessage.Name = "lbUserMessage";
-            this.lbUserMessage.Size = new System.Drawing.Size(194, 24);
+            this.lbUserMessage.Size = new System.Drawing.Size(165, 20);
             this.lbUserMessage.TabIndex = 18;
             this.lbUserMessage.Text = "Mensaje de usuario";
             // 
@@ -515,28 +534,17 @@ namespace CheckList
             this.tbSearch.Size = new System.Drawing.Size(178, 22);
             this.tbSearch.TabIndex = 19;
             // 
-            // btnHelp
+            // productCtrlBindingSource
             // 
-            this.btnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(38)))), ((int)(((byte)(70)))));
-            this.btnHelp.FlatAppearance.BorderSize = 0;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.ForeColor = System.Drawing.Color.Silver;
-            this.btnHelp.Location = new System.Drawing.Point(3, 80);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(208, 30);
-            this.btnHelp.TabIndex = 11;
-            this.btnHelp.Text = "Ayuda";
-            this.btnHelp.UseVisualStyleBackColor = false;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            this.productCtrlBindingSource.DataSource = typeof(CheckList.Controller.ProductCtrl);
             // 
-            // idDataGridViewTextBoxColumn
+            // Id
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 60;
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "ID";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 60;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -570,14 +578,6 @@ namespace CheckList
             this.stockDataGridViewTextBoxColumn.ReadOnly = true;
             this.stockDataGridViewTextBoxColumn.Width = 80;
             // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(CheckList.Product);
-            // 
-            // productCtrlBindingSource
-            // 
-            this.productCtrlBindingSource.DataSource = typeof(CheckList.Controller.ProductCtrl);
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -603,9 +603,9 @@ namespace CheckList
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.groupBox.ResumeLayout(false);
             this.groupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productCtrlBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -641,15 +641,15 @@ namespace CheckList
         private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.BindingSource productCtrlBindingSource;
         private System.Windows.Forms.TextBox tbSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lbErrorId;
         private System.Windows.Forms.Label lbErrorName;
         private System.Windows.Forms.Label lbErrorPrice;
         private System.Windows.Forms.Label lbErrorStock;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
     }
 }

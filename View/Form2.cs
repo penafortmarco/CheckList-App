@@ -45,46 +45,67 @@ namespace CheckList
                 product.Price = Convert.ToDouble(tbPrice.Text);
                 product.Stock = Convert.ToInt32(tbStock.Text);
             }
-            catch (FormatException)
-            {
-                lbUserMessage.Text = "Todos los campos son obligatorios.";
-                lbUserMessage.Visible = true;
-            }
+            catch (FormatException) { }
 
-            ProductCtrl crtl = new ProductCtrl();
-            if(string.IsNullOrEmpty(tbId.Text))
+            if (isNull())
             {
-                try
-                {
-                    product.Id = Convert.ToInt32(tbId.Text);
-                    flag = crtl.update(product);
-                }
-                catch (FormatException)
-                {
-                    lbUserMessage.Text = "Todos los campos son obligatorios.";
-                    lbUserMessage.Visible = true;
-                }
+                lbUserMessage.ForeColor = Color.Red;
+                lbUserMessage.Text = "Llena todos los campos.";
+                lbUserMessage.Visible = true;
             }
             else
             {
-                flag = crtl.add(product);
-            }
-            if (flag) 
-            { 
-                lbUserMessage.Text = "Registro guardado.";
-                loadTable(null);
-                clean();
+                if (checkID())
+                {
+                    lbErrorId.Text = " *Este ID ya existe.";
+                }
+                else
+                {
+                    ProductCtrl crtl = new ProductCtrl();
+                    if (string.IsNullOrEmpty(tbId.Text))
+                    {
+                        try
+                        {
+                            product.Id = Convert.ToInt32(tbId.Text);
+                            flag = crtl.update(product);
+                        }
+                        catch (FormatException)
+                        {
+                            lbUserMessage.ForeColor = Color.Red;
+                            lbUserMessage.Text = "Llena todos los campos.";
+                            lbUserMessage.Visible = true;
+                        }
+                    }
+                    else flag = crtl.add(product);
+                    if (flag)
+                    {
+                        loadTable(null);
+                        clean();
+                        lbUserMessage.Visible = true;
+                        lbUserMessage.Text = "Registro guardado.";
+                    }
+                }
             }
         }
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32((dataGridView.CurrentRow.Cells[0].Value.ToString()));
-            ProductCtrl crtl = new ProductCtrl();
-            crtl.delete(id);
-            loadTable(null);
+            if (dataGridView.Rows.Count == 0)
+            {
+                lbUserMessage.ForeColor = Color.Red;
+                lbUserMessage.Text = "Inventario completamente vacío.";
+                lbUserMessage.Visible = true;
+            }
+            else
+            {
+                int id = Convert.ToInt32(dataGridView.CurrentRow.Cells[0].Value.ToString());
+                ProductCtrl crtl = new ProductCtrl();
+                crtl.delete(id);
+                loadTable(null);
+            }
         }
         private void btnModify_Click(object sender, EventArgs e)
         {
+            clean();
             tbId.Text = dataGridView.CurrentRow.Cells[0].Value.ToString();
             tbName.Text = dataGridView.CurrentRow.Cells[1].Value.ToString();
             tbDescription.Text = dataGridView.CurrentRow.Cells[2].Value.ToString();
@@ -123,8 +144,6 @@ namespace CheckList
                 ReleaseCapture();
                 SendMessage(this.Handle, 0x112, 0xf012, 0);
             }
-
-
         #endregion
         #region Dynamic Functions
         public void clean()
@@ -176,7 +195,6 @@ namespace CheckList
                 e.Handled = true;
             }
         }
-
         private void tbPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 32 && e.KeyChar <= 45) 
@@ -188,7 +206,6 @@ namespace CheckList
                 e.Handled = true;
             }
         }
-
         private void tbStock_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 32 && e.KeyChar <= 47)
@@ -198,6 +215,23 @@ namespace CheckList
                 lbErrorStock.Text = " *Este campo es de dígitos numéricos";
                 e.Handled = true;
             }
+        }
+        private bool isNull()
+        {
+            if (string.IsNullOrEmpty(tbId.Text)
+                || string.IsNullOrEmpty(tbName.Text)
+                || string.IsNullOrEmpty(tbDescription.Text)
+                || string.IsNullOrEmpty(tbPrice.Text)
+                || string.IsNullOrEmpty(tbStock.Text))
+            {
+                return true;
+            }
+            else return false; 
+        }
+        private bool checkID()
+        {
+            bool exist = dataGridView.Rows.Cast<DataGridViewRow>().Any(x => x.Cells["ID"].Value.ToString() == tbId.Text)? true: false;
+            return exist;
         }
         #endregion
     }
