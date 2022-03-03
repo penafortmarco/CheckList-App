@@ -91,6 +91,8 @@
   <ItemGroup>
     <Compile Include="Controller\DataBaseConecction.cs" />
     <Compile Include="Controller\ProductCtrl.cs" />
+    <Compile Include="Controller\RegisterCtrl.cs" />
+    <Compile Include="Model\Register.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +115,12 @@
     <Compile Include="View\FormHelp.Designer.cs">
       <DependentUpon>FormHelp.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormRegister.Designer.cs">
+      <DependentUpon>FormRegister.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,11 +134,16 @@
     <EmbeddedResource Include="View\FormHelp.resx">
       <DependentUpon>FormHelp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormRegister.resx">
+      <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CheckList.Product.datasource" />
     <None Include="Properties\DataSources\CheckList.Properties.Settings.datasource" />
     <None Include="Properties\DataSources\DoctorMeeting.Controller.DataBaseConecction.datasource" />
     <None Include="Properties\DataSources\DoctorMeeting.Controller.ProductCtrl.datasource" />
+    <None Include="Properties\DataSources\DoctorMeeting.Controller.RegisterCtrl.datasource" />
+    <None Include="Properties\DataSources\DoctorMeeting.Model.Register.datasource" />
     <None Include="Properties\DataSources\Form2.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

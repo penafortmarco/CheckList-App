@@ -65,3 +65,4 @@ C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\CheckList.csproj.Gener
 C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\CheckList.csproj.CoreCompileInputs.cache
 C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\DoctorMeeting.exe
 C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\DoctorMeeting.pdb
+C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\DoctorMeeting.View.FormRegister.resources

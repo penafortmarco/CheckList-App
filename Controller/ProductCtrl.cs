@@ -37,7 +37,7 @@ namespace CheckList.Controller
                     product.Id = Convert.ToInt32(reader[0]);
                     product.Name = reader[1].ToString();
                     product.Description = reader[2].ToString();
-                    product.Price = Convert.ToDouble(reader[3]);
+                    product.Price = Convert.ToSingle(reader[3]);
                     product.Stock = Convert.ToInt32(reader[4]);
                     productList.Add(product);
                 }

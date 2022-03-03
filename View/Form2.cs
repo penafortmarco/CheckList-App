@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using CheckList.Controller;
 using System.Threading;
 using DoctorMeeting.View;
+using DoctorMeeting.Model;
+using DoctorMeeting.Controller;
 
 namespace CheckList
 {
@@ -37,12 +39,13 @@ namespace CheckList
         {
             bool flag = false;
             Product product = new Product();
+            Register register = new Register();
             try
             {
                 product.Id = Convert.ToInt32(tbId.Text);
                 product.Name = (tbName.Text).ToUpper();
                 product.Description = (tbDescription.Text).ToUpper();
-                product.Price = Convert.ToDouble(tbPrice.Text);
+                product.Price = Convert.ToSingle(tbPrice.Text);
                 product.Stock = Convert.ToInt32(tbStock.Text);
             }
             catch (FormatException) { }
@@ -55,12 +58,7 @@ namespace CheckList
             }
             else
             {
-                if (checkID())
-                {
-                    lbErrorId.Text = " *Este ID ya existe.";
-                }
-                else
-                {
+            
                     ProductCtrl crtl = new ProductCtrl();
                     if (string.IsNullOrEmpty(tbId.Text))
                     {
@@ -84,7 +82,16 @@ namespace CheckList
                         lbUserMessage.Visible = true;
                         lbUserMessage.Text = "Registro guardado.";
                     }
-                }
+                Random random = new Random();
+                RegisterCtrl registerCtrl = new RegisterCtrl();
+                register.Id = random.Next(9999);
+                register.Date = Convert.ToString(DateTime.Today.Date);
+                register.Time = Convert.ToString(DateTime.Today.Hour);
+                register.Action = "Se agregó";
+                register.ProductData = $"ID: {product.Id}\n Nombre: {product.Name} Descripción: \n{product.Description}\n Precio: {product.Price}\n Stock: {product.Stock}";
+                register.Motive = null; 
+                registerCtrl.add(register); //usar insert where en un metodo de sql. Insertar el motivo donde el id sea igual a product.Id
+                
             }
         }
         private void btnRemove_Click(object sender, EventArgs e)
@@ -127,6 +134,12 @@ namespace CheckList
             formHelp.StartPosition = FormStartPosition.CenterScreen;
             formHelp.Show();
         }
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            FormRegister formRegister = new FormRegister();
+            formRegister.StartPosition = FormStartPosition.CenterScreen;
+            formRegister.Show();
+        }
         private void btnClean_Click(object sender, EventArgs e)
         {
             clean();
@@ -168,6 +181,26 @@ namespace CheckList
             ProductCtrl ctrl = new ProductCtrl();
             dataGridView.DataSource = ctrl.consultation(data);
         }
+
+        private void allNull()
+        {
+            groupBox.Enabled = false;
+        }
+        private void allEnabled()
+        {
+            lbId.Enabled = true;
+            tbId.Enabled = true;
+            lbName.Enabled = true;
+            tbName.Enabled = true;
+            lbDescription.Enabled = true;
+            tbDescription.Enabled = true;
+            lbPrice.Enabled = true;
+            tbPrice.Enabled = true;
+            lbStock.Enabled = true;
+            tbStock.Enabled = true;
+            lbUserMessage.Enabled = true;
+            btnClean.Enabled = true;
+        }
         #endregion
         #region Errors management
         private void tbId_KeyPress(object sender, KeyPressEventArgs e)
@@ -197,14 +230,17 @@ namespace CheckList
         }
         private void tbPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 45) 
-                || (e.KeyChar == 47) 
+            
+            if ((e.KeyChar >= 32 && e.KeyChar <= 43) 
+                || (e.KeyChar == 45)
+                || (e.KeyChar == 46)
                 || (e.KeyChar >= 58 && e.KeyChar <= 255))
             {
                 lbErrorPrice.Visible = true;
                 lbErrorPrice.Text = " *Este campo es de dígitos decimales";
                 e.Handled = true;
             }
+            
         }
         private void tbStock_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -228,11 +264,7 @@ namespace CheckList
             }
             else return false; 
         }
-        private bool checkID()
-        {
-            bool exist = dataGridView.Rows.Cast<DataGridViewRow>().Any(x => x.Cells["ID"].Value.ToString() == tbId.Text)? true: false;
-            return exist;
-        }
+
         #endregion
     }
 }
