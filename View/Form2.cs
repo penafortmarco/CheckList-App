@@ -41,12 +41,13 @@ namespace CheckList
             bool flag = false;
             Product product = new Product();
             Register register = new Register();
+
             try
             {
                 product.Id = Convert.ToInt32(tbId.Text);
                 product.Name = (tbName.Text).ToUpper();
                 product.Description = (tbDescription.Text).ToUpper();
-                product.Price = Convert.ToSingle(tbPrice.Text);
+                product.Price = "$ "+tbPrice.Text.ToString();
                 product.Stock = Convert.ToInt32(tbStock.Text);
             }
             catch (FormatException) { }
@@ -59,51 +60,38 @@ namespace CheckList
             }
             else
             {
-            
-                    ProductCtrl crtl = new ProductCtrl();
-                    if (string.IsNullOrEmpty(tbId.Text))
-                    {
-                        try
-                        {
-                            product.Id = Convert.ToInt32(tbId.Text);
-                            flag = crtl.update(product);
-                        }
-                        catch (FormatException)
-                        {
-                            lbUserMessage.ForeColor = Color.Red;
-                            lbUserMessage.Text = "Llena todos los campos.";
-                            lbUserMessage.Visible = true;
-                        }
-                    }
-                    else flag = crtl.add(product);
-                    if (flag)
-                    {
-                        loadTable(null);
-                        clean();
-                        lbUserMessage.Visible = true;
-                        lbUserMessage.Text = "Registro guardado.";
-                    }
-
-                Random random = new Random();
-                RegisterCtrl registerCtrl = new RegisterCtrl();
-
-                register.Id = random.Next(9999);
-                register.Date = Convert.ToString(DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
-                register.Time = Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute);
-                register.ProductData = $"ID: {product.Id}\n Nombre: {product.Name} Descripción: \n{product.Description}\n Precio: {product.Price}\n Stock: {product.Stock}";
-             
-                if (modified)
+                ProductCtrl crtl = new ProductCtrl();
+                flag = crtl.add(product);
+                if (flag)
                 {
-                    register.Action = "Se modificó";
-                    this.Hide();
-                    FormMotive formMotive = new FormMotive(register.Id);
-                    formMotive.StartPosition = FormStartPosition.CenterScreen;
-                    formMotive.Show();
-                    this.modified = false;
+                    loadTable(null);
+                    clean();
+                    lbUserMessage.Visible = true;
+                    lbUserMessage.Text = "Registro guardado.";
+                    //--------------------------------------------------Register Class---------------------------------------------------------------------------------------------//
+                    Random random = new Random();
+                    RegisterCtrl registerCtrl = new RegisterCtrl();
+                    register.Id = random.Next(9999);
+                    register.Date = Convert.ToString(DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
+                    register.Time = Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+                    register.ProductData = $"ID: {product.Id}\n Nombre: {product.Name} Descripción: \n{product.Description}\n Precio: {product.Price}\n Stock: {product.Stock}";
+                    if (modified)
+                    {
+                        register.Action = "Se modificó";
+                        this.Hide();
+                        FormMotive formMotive = new FormMotive(register.Id);
+                        formMotive.StartPosition = FormStartPosition.CenterScreen;
+                        formMotive.Show();
+                        this.modified = false;
+                    }
+                    else register.Action = "Se agregó";
+                    registerCtrl.add(register);
                 }
-                else register.Action = "Se agregó";
-                registerCtrl.add(register);
-
+                else
+                {
+                    lbErrorId.Visible = true;
+                    lbErrorId.Text = " *Ya existe un producto con este ID";
+                }
             }
         }
         private void btnRemove_Click(object sender, EventArgs e)
@@ -125,10 +113,10 @@ namespace CheckList
                 Register register = new Register();
                 Random random = new Random();
                 RegisterCtrl registerCtrl = new RegisterCtrl();
-                
+
 
                 register.Id = random.Next(9999);
-                register.Date = Convert.ToString(DateTime.Now.Day+"/" + DateTime.Now.Month+"/" + DateTime.Now.Year);
+                register.Date = Convert.ToString(DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
                 register.Time = Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute);
                 register.ProductData = $"ID: {id}\n Nombre: {name} Descripción: \n{descrp}\n Precio: {price}\n Stock: {stock}";
                 register.Action = "Se quitó";
@@ -159,7 +147,6 @@ namespace CheckList
             crtl.delete(id);
             modified = true;
         }
-    
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string data = tbSearch.Text;
@@ -186,15 +173,15 @@ namespace CheckList
         #region Form2 movement
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-            private extern static void ReleaseCapture();
+        private extern static void ReleaseCapture();
 
-            [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-            private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-            private void Form2_MouseDown(object sender, MouseEventArgs e)
-            {
-                ReleaseCapture();
-                SendMessage(this.Handle, 0x112, 0xf012, 0);
-            }
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void Form2_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
         #endregion
         #region Dynamic Functions
         public void clean()
@@ -238,7 +225,7 @@ namespace CheckList
         #region Errors management
         private void tbId_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 47) 
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47)
                 || (e.KeyChar >= 58 && e.KeyChar <= 255))
             {
                 lbErrorId.Visible = true;
@@ -263,8 +250,8 @@ namespace CheckList
         }
         private void tbPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
-            if ((e.KeyChar >= 32 && e.KeyChar <= 43) 
+
+            if ((e.KeyChar >= 32 && e.KeyChar <= 43)
                 || (e.KeyChar == 45)
                 || (e.KeyChar == 46)
                 || (e.KeyChar >= 58 && e.KeyChar <= 255))
@@ -273,7 +260,7 @@ namespace CheckList
                 lbErrorPrice.Text = " *Este campo es de dígitos decimales";
                 e.Handled = true;
             }
-            
+
         }
         private void tbStock_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -295,7 +282,7 @@ namespace CheckList
             {
                 return true;
             }
-            else return false; 
+            else return false;
         }
 
         #endregion

@@ -37,15 +37,12 @@ namespace CheckList.Controller
                     product.Id = Convert.ToInt32(reader[0]);
                     product.Name = reader[1].ToString();
                     product.Description = reader[2].ToString();
-                    product.Price = Convert.ToSingle(reader[3]);
+                    product.Price = reader[3].ToString();
                     product.Stock = Convert.ToInt32(reader[4]);
                     productList.Add(product);
                 }
             }
-            catch (MySqlException ex)
-            {
-
-            }
+            catch (MySqlException){}
             return productList;
         }
         public bool add(Product data)
