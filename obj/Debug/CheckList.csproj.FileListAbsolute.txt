@@ -66,3 +66,4 @@ C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\CheckList.csproj.CoreC
 C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\DoctorMeeting.exe
 C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\DoctorMeeting.pdb
 C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\DoctorMeeting.View.FormRegister.resources
+C:\Users\Marco Peñafort\source\repos\CheckList\obj\Debug\DoctorMeeting.View.FormMotive.resources

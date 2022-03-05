@@ -11,20 +11,14 @@ namespace DoctorMeeting.Controller
 {
     class RegisterCtrl : DataBaseConecction
     {
-        public List<Object> consultation(string data)
+        public List<Object> consultation()
         {
             MySqlDataReader reader;
             List<Object> registerList = new List<object>();
             string sql;
-            /*if (data == null)
-            {*/
-                sql = "SELECT * FROM transactions ORDER BY id ASC";
-           /* }
-            else
-            {
-                sql = "SELECT id, name, description, price, stock FROM products WHERE id LIKE '%" + data + "%' " +
-                    "OR name LIKE '%" + data + "%' OR description LIKE '%" + data + "%' ORDER BY name ASC";
-            }*/
+           
+            sql = "SELECT * FROM transactions ORDER BY date DESC, time DESC";
+          
             try
             {
                 MySqlConnection dataBase = base.conecction();
@@ -40,12 +34,13 @@ namespace DoctorMeeting.Controller
                     register.Time = reader[2].ToString();
                     register.Action = reader[3].ToString();
                     register.ProductData = reader[4].ToString();
+                    register.Motive = reader[5].ToString();
                     registerList.Add(register);
                 }
             }
             catch (MySqlException ex)
             {
-
+                registerList = null;
             }
             return registerList;
         }
@@ -68,6 +63,22 @@ namespace DoctorMeeting.Controller
             //    flag = false;
             //}
             return flag;
+        }
+        public void insertMotive(int idNumber, string motive)
+        {
+            string sql = "UPDATE transactions SET motive='" + motive + "'WHERE id= '" + idNumber + "'";
+            try
+            {
+                MySqlConnection dataBase = base.conecction();
+                dataBase.Open();
+                MySqlCommand command = new MySqlCommand(sql, dataBase);
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Error " + ex.Message);
+            }
+
         }
     }
 }

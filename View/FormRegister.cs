@@ -18,15 +18,15 @@ namespace DoctorMeeting.View
         public FormRegister()
         {
             InitializeComponent();
-            dataGridView2.DataSource = registerCtrl.consultation(null);
+            dataGridView2.DataSource = registerCtrl.consultation();
         }
 
         private void FormRegister_Load(object sender, EventArgs e)
         {
-
+            dataGridView2.DataSource = registerCtrl.consultation();
         }
 
-        private void loginButton_Click(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }

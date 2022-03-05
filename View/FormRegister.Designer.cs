@@ -36,15 +36,15 @@ namespace DoctorMeeting.View
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.loginButton = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.registerCtrlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productDataDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.motiveDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.registerCtrlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerCtrlBindingSource)).BeginInit();
@@ -111,70 +111,21 @@ namespace DoctorMeeting.View
             this.dataGridView2.Size = new System.Drawing.Size(1141, 618);
             this.dataGridView2.TabIndex = 11;
             // 
-            // loginButton
+            // btnExit
             // 
-            this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(97)))), ((int)(((byte)(238)))));
-            this.loginButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loginButton.FlatAppearance.BorderSize = 0;
-            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginButton.ForeColor = System.Drawing.Color.White;
-            this.loginButton.Location = new System.Drawing.Point(959, 622);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(176, 58);
-            this.loginButton.TabIndex = 12;
-            this.loginButton.Text = "Salir";
-            this.loginButton.UseVisualStyleBackColor = false;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.FillWeight = 40F;
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MaxInputLength = 4;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // timeDataGridViewTextBoxColumn
-            // 
-            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
-            this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
-            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
-            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // actionDataGridViewTextBoxColumn
-            // 
-            this.actionDataGridViewTextBoxColumn.DataPropertyName = "Action";
-            this.actionDataGridViewTextBoxColumn.HeaderText = "Action";
-            this.actionDataGridViewTextBoxColumn.Name = "actionDataGridViewTextBoxColumn";
-            this.actionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.actionDataGridViewTextBoxColumn.Width = 190;
-            // 
-            // productDataDataGridViewTextBoxColumn
-            // 
-            this.productDataDataGridViewTextBoxColumn.DataPropertyName = "ProductData";
-            this.productDataDataGridViewTextBoxColumn.HeaderText = "ProductData";
-            this.productDataDataGridViewTextBoxColumn.Name = "productDataDataGridViewTextBoxColumn";
-            this.productDataDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productDataDataGridViewTextBoxColumn.Width = 410;
-            // 
-            // motiveDataGridViewTextBoxColumn
-            // 
-            this.motiveDataGridViewTextBoxColumn.DataPropertyName = "Motive";
-            this.motiveDataGridViewTextBoxColumn.HeaderText = "Motive";
-            this.motiveDataGridViewTextBoxColumn.Name = "motiveDataGridViewTextBoxColumn";
-            this.motiveDataGridViewTextBoxColumn.ReadOnly = true;
-            this.motiveDataGridViewTextBoxColumn.Width = 190;
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(97)))), ((int)(((byte)(238)))));
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(959, 622);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(176, 58);
+            this.btnExit.TabIndex = 12;
+            this.btnExit.Text = "Salir";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // registerBindingSource
             // 
@@ -184,13 +135,63 @@ namespace DoctorMeeting.View
             // 
             this.registerCtrlBindingSource.DataSource = typeof(DoctorMeeting.Controller.RegisterCtrl);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.FillWeight = 35F;
+            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.idDataGridViewTextBoxColumn.MaxInputLength = 4;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Fecha";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // timeDataGridViewTextBoxColumn
+            // 
+            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
+            this.timeDataGridViewTextBoxColumn.FillWeight = 80F;
+            this.timeDataGridViewTextBoxColumn.HeaderText = "Hora";
+            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
+            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.timeDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // actionDataGridViewTextBoxColumn
+            // 
+            this.actionDataGridViewTextBoxColumn.DataPropertyName = "Action";
+            this.actionDataGridViewTextBoxColumn.HeaderText = "Acción";
+            this.actionDataGridViewTextBoxColumn.Name = "actionDataGridViewTextBoxColumn";
+            this.actionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productDataDataGridViewTextBoxColumn
+            // 
+            this.productDataDataGridViewTextBoxColumn.DataPropertyName = "ProductData";
+            this.productDataDataGridViewTextBoxColumn.HeaderText = "Datos del producto";
+            this.productDataDataGridViewTextBoxColumn.Name = "productDataDataGridViewTextBoxColumn";
+            this.productDataDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productDataDataGridViewTextBoxColumn.Width = 580;
+            // 
+            // motiveDataGridViewTextBoxColumn
+            // 
+            this.motiveDataGridViewTextBoxColumn.DataPropertyName = "Motive";
+            this.motiveDataGridViewTextBoxColumn.HeaderText = "Motivo de operación";
+            this.motiveDataGridViewTextBoxColumn.Name = "motiveDataGridViewTextBoxColumn";
+            this.motiveDataGridViewTextBoxColumn.ReadOnly = true;
+            this.motiveDataGridViewTextBoxColumn.Width = 240;
+            // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(38)))), ((int)(((byte)(70)))));
             this.ClientSize = new System.Drawing.Size(1147, 693);
-            this.Controls.Add(this.loginButton);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dataGridView2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormRegister";
@@ -208,7 +209,7 @@ namespace DoctorMeeting.View
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource registerCtrlBindingSource;
         private System.Windows.Forms.BindingSource registerBindingSource;
-        private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;

@@ -20,6 +20,7 @@ namespace CheckList
 {
     public partial class Form2 : Form
     {
+        private bool modified = false;
         public Form2()
         {
             InitializeComponent();
@@ -82,16 +83,27 @@ namespace CheckList
                         lbUserMessage.Visible = true;
                         lbUserMessage.Text = "Registro guardado.";
                     }
+
                 Random random = new Random();
                 RegisterCtrl registerCtrl = new RegisterCtrl();
+
                 register.Id = random.Next(9999);
-                register.Date = Convert.ToString(DateTime.Today.Date);
-                register.Time = Convert.ToString(DateTime.Today.Hour);
-                register.Action = "Se agregó";
+                register.Date = Convert.ToString(DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
+                register.Time = Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute);
                 register.ProductData = $"ID: {product.Id}\n Nombre: {product.Name} Descripción: \n{product.Description}\n Precio: {product.Price}\n Stock: {product.Stock}";
-                register.Motive = null; 
-                registerCtrl.add(register); //usar insert where en un metodo de sql. Insertar el motivo donde el id sea igual a product.Id
-                
+             
+                if (modified)
+                {
+                    register.Action = "Se modificó";
+                    this.Hide();
+                    FormMotive formMotive = new FormMotive(register.Id);
+                    formMotive.StartPosition = FormStartPosition.CenterScreen;
+                    formMotive.Show();
+                    this.modified = false;
+                }
+                else register.Action = "Se agregó";
+                registerCtrl.add(register);
+
             }
         }
         private void btnRemove_Click(object sender, EventArgs e)
@@ -104,10 +116,33 @@ namespace CheckList
             }
             else
             {
-                int id = Convert.ToInt32(dataGridView.CurrentRow.Cells[0].Value.ToString());
+                int id = Convert.ToInt32(dataGridView.CurrentRow.Cells[0].Value);
+                string name = dataGridView.CurrentRow.Cells[1].Value.ToString();
+                string descrp = dataGridView.CurrentRow.Cells[2].Value.ToString();
+                string price = dataGridView.CurrentRow.Cells[3].Value.ToString();
+                string stock = dataGridView.CurrentRow.Cells[4].Value.ToString();
+
+                Register register = new Register();
+                Random random = new Random();
+                RegisterCtrl registerCtrl = new RegisterCtrl();
+                
+
+                register.Id = random.Next(9999);
+                register.Date = Convert.ToString(DateTime.Now.Day+"/" + DateTime.Now.Month+"/" + DateTime.Now.Year);
+                register.Time = Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+                register.ProductData = $"ID: {id}\n Nombre: {name} Descripción: \n{descrp}\n Precio: {price}\n Stock: {stock}";
+                register.Action = "Se quitó";
+
+                this.Hide();
+                FormMotive formMotive = new FormMotive(register.Id);
+                formMotive.StartPosition = FormStartPosition.CenterScreen;
+                formMotive.Show();
+
+                registerCtrl.add(register);
                 ProductCtrl crtl = new ProductCtrl();
                 crtl.delete(id);
                 loadTable(null);
+                modified = false;
             }
         }
         private void btnModify_Click(object sender, EventArgs e)
@@ -122,7 +157,9 @@ namespace CheckList
             int id = Convert.ToInt32((dataGridView.CurrentRow.Cells[0].Value.ToString()));
             ProductCtrl crtl = new ProductCtrl();
             crtl.delete(id);
+            modified = true;
         }
+    
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string data = tbSearch.Text;
@@ -143,6 +180,7 @@ namespace CheckList
         private void btnClean_Click(object sender, EventArgs e)
         {
             clean();
+            modified = false;
         }
         #endregion
         #region Form2 movement
@@ -180,11 +218,6 @@ namespace CheckList
             List<Product> productList = new List<Product>();
             ProductCtrl ctrl = new ProductCtrl();
             dataGridView.DataSource = ctrl.consultation(data);
-        }
-
-        private void allNull()
-        {
-            groupBox.Enabled = false;
         }
         private void allEnabled()
         {
