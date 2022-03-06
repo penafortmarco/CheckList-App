@@ -47,7 +47,7 @@ namespace CheckList
                 product.Id = Convert.ToInt32(tbId.Text);
                 product.Name = (tbName.Text).ToUpper();
                 product.Description = (tbDescription.Text).ToUpper();
-                product.Price = "$ "+tbPrice.Text.ToString();
+                product.Price = tbPrice.Text.ToString();
                 product.Stock = Convert.ToInt32(tbStock.Text);
             }
             catch (FormatException) { }
@@ -135,17 +135,26 @@ namespace CheckList
         }
         private void btnModify_Click(object sender, EventArgs e)
         {
-            clean();
-            tbId.Text = dataGridView.CurrentRow.Cells[0].Value.ToString();
-            tbName.Text = dataGridView.CurrentRow.Cells[1].Value.ToString();
-            tbDescription.Text = dataGridView.CurrentRow.Cells[2].Value.ToString();
-            tbPrice.Text = dataGridView.CurrentRow.Cells[3].Value.ToString();
-            tbStock.Text = dataGridView.CurrentRow.Cells[4].Value.ToString();
+            if (dataGridView.Rows.Count == 0)
+            {
+                lbUserMessage.ForeColor = Color.Red;
+                lbUserMessage.Text = "Inventario completamente vacío.";
+                lbUserMessage.Visible = true;
+            }
+            else
+            {
+                clean();
+                tbId.Text = dataGridView.CurrentRow.Cells[0].Value.ToString();
+                tbName.Text = dataGridView.CurrentRow.Cells[1].Value.ToString();
+                tbDescription.Text = dataGridView.CurrentRow.Cells[2].Value.ToString();
+                tbPrice.Text = dataGridView.CurrentRow.Cells[3].Value.ToString();
+                tbStock.Text = dataGridView.CurrentRow.Cells[4].Value.ToString();
 
-            int id = Convert.ToInt32((dataGridView.CurrentRow.Cells[0].Value.ToString()));
-            ProductCtrl crtl = new ProductCtrl();
-            crtl.delete(id);
-            modified = true;
+                int id = Convert.ToInt32((dataGridView.CurrentRow.Cells[0].Value.ToString()));
+                ProductCtrl crtl = new ProductCtrl();
+                crtl.delete(id);
+                modified = true;
+            }
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {

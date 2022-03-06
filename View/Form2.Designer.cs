@@ -453,7 +453,7 @@ namespace CheckList
             this.lbUserMessage.AutoSize = true;
             this.lbUserMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUserMessage.ForeColor = System.Drawing.Color.Silver;
-            this.lbUserMessage.Location = new System.Drawing.Point(66, 429);
+            this.lbUserMessage.Location = new System.Drawing.Point(30, 431);
             this.lbUserMessage.Name = "lbUserMessage";
             this.lbUserMessage.Size = new System.Drawing.Size(165, 20);
             this.lbUserMessage.TabIndex = 18;
@@ -477,7 +477,7 @@ namespace CheckList
             this.lbStock.AutoSize = true;
             this.lbStock.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStock.ForeColor = System.Drawing.Color.Silver;
-            this.lbStock.Location = new System.Drawing.Point(30, 372);
+            this.lbStock.Location = new System.Drawing.Point(47, 372);
             this.lbStock.Name = "lbStock";
             this.lbStock.Size = new System.Drawing.Size(80, 24);
             this.lbStock.TabIndex = 16;
@@ -501,7 +501,7 @@ namespace CheckList
             this.lbPrice.AutoSize = true;
             this.lbPrice.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPrice.ForeColor = System.Drawing.Color.Silver;
-            this.lbPrice.Location = new System.Drawing.Point(19, 318);
+            this.lbPrice.Location = new System.Drawing.Point(36, 319);
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Size = new System.Drawing.Size(91, 24);
             this.lbPrice.TabIndex = 14;
